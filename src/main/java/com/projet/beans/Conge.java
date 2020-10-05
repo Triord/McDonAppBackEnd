@@ -12,7 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -60,7 +62,7 @@ public class Conge {
 	public void setRaison(String raison) {
 		this.raison = raison;
 	}
-
+	@JsonIgnore
 	public Employee getEmployee() {
 		return employee;
 	}

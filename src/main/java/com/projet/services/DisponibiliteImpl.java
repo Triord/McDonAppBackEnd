@@ -1,9 +1,13 @@
 package com.projet.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +21,9 @@ public class DisponibiliteImpl implements DisponibiliteService {
 	private DisponibiliteRepo dispRep;
 	
 	public Set<Disponibilite> allDisp(){
-		Set<Disponibilite> disp =  new HashSet<Disponibilite>((Collection<Disponibilite>) dispRep.findAllOrderBy());
+		
+		Set<Disponibilite> disp =  new TreeSet<Disponibilite>((Collection<Disponibilite>) dispRep.findAllOrderBy());
+		
 		return disp;
 	}
 	public Disponibilite upDisp(Disponibilite disp, int id) {

@@ -25,9 +25,6 @@ import com.projet.services.Password;
 
 @Entity
 @Table(name = "employe_")
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idEmploye")
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,6 +77,12 @@ public class Employee {
 	
 	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Horaire> horaire;
+	
+	@OneToMany(mappedBy = "createBy",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	public Set<Horaire> horaireCreer;
+	
+	@OneToMany(mappedBy = "modifBy",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	public Set<Horaire> horaireModif;
 
 	public int getIdEmploye() {
 		return idEmploye;
@@ -170,7 +173,6 @@ public class Employee {
 	public void setQuestion(Set<Question> question) {
 		this.question = question;
 	}
-	@JsonIgnore
 	public Set<Disponibilite> getDispo() {
 		return dispo;
 	}
@@ -201,6 +203,22 @@ public class Employee {
 
 	public void setHoraire(Set<Horaire> horaire) {
 		this.horaire = horaire;
+	}
+
+	public Set<Horaire> getHoraireCreer() {
+		return horaireCreer;
+	}
+
+	public void setHoraireCreer(Set<Horaire> horaireCreer) {
+		this.horaireCreer = horaireCreer;
+	}
+
+	public Set<Horaire> getHoraireModif() {
+		return horaireModif;
+	}
+
+	public void setHoraireModif(Set<Horaire> horaireModif) {
+		this.horaireModif = horaireModif;
 	}
 	
 	

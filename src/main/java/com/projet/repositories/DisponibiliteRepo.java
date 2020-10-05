@@ -17,4 +17,7 @@ public interface DisponibiliteRepo extends CrudRepository<Disponibilite, Integer
 	//@Query(value ="select nom,prenom from disponibilite_ d join employe_ e on d.idEmploye=e.idEmploye where d. = :id", nativeQuery =true)
 	//List <Disponibilite> findLocByIdUser(int id);
 	
+	@Query(value="select * from disponibilite_ as d join employe_ as e on d.idEmploye = :idUC", nativeQuery = true)
+	Disponibilite findDispInHorCreate(int idUC);
+
 }

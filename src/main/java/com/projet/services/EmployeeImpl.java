@@ -17,6 +17,10 @@ public class EmployeeImpl implements EmployeeService {
 	public Set<Employee> findAll(){
 		Set<Employee> emp = new HashSet<Employee>((Collection<Employee>) empR.findAll()); 
 		return emp;
+		}
+	public Employee addEmp(Employee emp) {
+		emp.setStatut(true);
+		return empR.save(emp);
 		
 	}
 }
