@@ -2,6 +2,7 @@ package com.projet.repositories;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,4 +20,7 @@ public interface EmployeeRepo extends CrudRepository<Employee, Integer>{
 	
 	@Query(value="select * from employe_ where idEmploye =:id",nativeQuery=true)
 	Employee employeOfSchedule(String id);
+	
+	@Query(value="select * from employe_ order by nom",nativeQuery=true)
+	Set <Employee> findAllByOrder();
 }

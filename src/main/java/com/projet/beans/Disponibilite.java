@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.sun.istack.NotNull;
+
 
 @Entity
 @Table(name = "disponibilite_")

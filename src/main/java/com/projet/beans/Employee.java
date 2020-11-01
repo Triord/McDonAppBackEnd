@@ -60,8 +60,11 @@ public class Employee {
 	    )
 	private Set<Role> role = new HashSet<>();
 	
-	@OneToOne(mappedBy = "employee")
+	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
     private Forum forum;
+	
+	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	public Set<RaisonModif> raisonModif;
 	
 	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Question> question;
@@ -77,6 +80,12 @@ public class Employee {
 	
 	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Horaire> horaire;
+	
+	@OneToMany(mappedBy = "employeView",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	public Set<ViewEmploye> viewEmploye;
+	
+	@OneToMany(mappedBy = "manaWhoViewed",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	public Set<ViewEmploye> whoViewedMana;
 	
 	@OneToMany(mappedBy = "createBy",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Horaire> horaireCreer;
@@ -157,7 +166,7 @@ public class Employee {
 	public void setRole(Set<Role> role) {
 		this.role = role;
 	}
-
+	
 	public Forum getForum() {
 		return forum;
 	}
@@ -188,7 +197,7 @@ public class Employee {
 	public void setReponse(Set<Reponse> reponse) {
 		this.reponse = reponse;
 	}
-
+	@JsonIgnore
 	public Set<Conge> getConge() {
 		return conge;
 	}
@@ -196,7 +205,6 @@ public class Employee {
 	public void setConge(Set<Conge> conge) {
 		this.conge = conge;
 	}
-
 	public Set<Horaire> getHoraire() {
 		return horaire;
 	}
@@ -204,7 +212,7 @@ public class Employee {
 	public void setHoraire(Set<Horaire> horaire) {
 		this.horaire = horaire;
 	}
-
+	@JsonIgnore
 	public Set<Horaire> getHoraireCreer() {
 		return horaireCreer;
 	}
@@ -212,13 +220,37 @@ public class Employee {
 	public void setHoraireCreer(Set<Horaire> horaireCreer) {
 		this.horaireCreer = horaireCreer;
 	}
-
+	@JsonIgnore
 	public Set<Horaire> getHoraireModif() {
 		return horaireModif;
 	}
 
 	public void setHoraireModif(Set<Horaire> horaireModif) {
 		this.horaireModif = horaireModif;
+	}
+	@JsonIgnore
+	public Set<RaisonModif> getRaisonModif() {
+		return raisonModif;
+	}
+
+	public void setRaisonModif(Set<RaisonModif> raisonModif) {
+		this.raisonModif = raisonModif;
+	}
+
+	public Set<ViewEmploye> getViewEmploye() {
+		return viewEmploye;
+	}
+
+	public void setViewEmploye(Set<ViewEmploye> viewEmploye) {
+		this.viewEmploye = viewEmploye;
+	}
+
+	public Set<ViewEmploye> getWhoViewedMana() {
+		return whoViewedMana;
+	}
+
+	public void setWhoViewedMana(Set<ViewEmploye> whoViewedMana) {
+		this.whoViewedMana = whoViewedMana;
 	}
 	
 	

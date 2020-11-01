@@ -22,7 +22,11 @@ public interface HoraireRepo extends CrudRepository<Horaire, Integer> {
 	@Query(value ="select * from horaire_ where dateJour between :dateIn and :dateOut", nativeQuery =true)
 	List <Horaire> findHoraireBtwn(@Param("dateIn") Date dateIn ,@Param("dateOut")Date dateOut);
 	
+	@Query(value="select * from horaire_ where dateJour = :dateForModif and idEmploye = :idEmpForModif", nativeQuery = true)
+	Horaire findForModif(@Param("dateForModif")String dateForModif, @Param("idEmpForModif") String idEmpForModif);
 	
+	@Query(value="select * from horaire_ where idHoraire = :idForFind", nativeQuery=true)
+	Horaire findScheduleById(@Param("idForFind") int idForFind);
 	//
 	//;
 }

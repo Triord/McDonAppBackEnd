@@ -53,6 +53,9 @@ public class Horaire {
 	@Column(name="heureFin2")
 	Time heureFin2;
 	
+	@Column(name="statusHoraire")
+	Boolean statusHoraire;
+	
 	@OneToMany(mappedBy = "horaire",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<RaisonModif> rm;
 	
@@ -125,7 +128,7 @@ public class Horaire {
 	public void setCreateBy(Employee createBy) {
 		this.createBy = createBy;
 	}
-	@JsonIgnore
+	//y avais un jsonIgnore qui evitais une erreur ici
 	public Employee getModifBy() {
 		return modifBy;
 	}
@@ -140,13 +143,21 @@ public class Horaire {
 	public void setRm(Set<RaisonModif> rm) {
 		this.rm = rm;
 	}
-
+	
 	public Employee getEmployee() {
 		return employee;
 	}
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public Boolean getStatusHoraire() {
+		return statusHoraire;
+	}
+
+	public void setStatusHoraire(Boolean statusHoraire) {
+		this.statusHoraire = statusHoraire;
 	}
 	
 	

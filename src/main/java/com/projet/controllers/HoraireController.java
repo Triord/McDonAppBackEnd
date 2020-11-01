@@ -13,9 +13,11 @@ import javax.persistence.TemporalType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,10 +43,8 @@ public class HoraireController {
 	
 	@GetMapping("/horaireWent")
     public List<Horaire> getHoraireBtwnDate(@RequestParam  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date dateIn, @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)  Date dateOut) throws ParseException {
-		
-	    
-        return horR.findHoraireBtwn(dateIn, dateOut);
-        
+		System.out.println(dateIn);
+		return horR.findHoraireBtwn(dateIn, dateOut);
     }
 	@PostMapping("/createSchedule")
 	public Horaire addSchedule(@RequestBody Horaire h) throws Exception {
@@ -54,5 +54,24 @@ public class HoraireController {
 	public Optional<Horaire> getDispo(@PathVariable int id,Model model) {
 		return horR.findById(id);		
 	}
+	@GetMapping("/modifThis")
+	public Horaire getHoraireForModif(@RequestParam String dateForModif, String idEmpForModif) throws ParseException{
+		Horaire h = horR.findForModif(dateForModif, idEmpForModif);
+		System.out.println(dateForModif+idEmpForModif);
+		return h;
+	}
+	@CrossOrigin(origins = "http://127.0.0.1/:4200")
+	@PutMapping("/modifSchedule")
+	public Horaire modifSchedule(@RequestBody Horaire h) throws Exception {
+		System.out.println("MODIFSCHEDULE");
+	 return horS.modifThisSchedule(h);
+	}
+	@CrossOrigin(origins = "http://127.0.0.1/:4200")
+	@PutMapping("/removeThisSchedule")
+	public Horaire removeThis(@RequestBody Horaire h) {
+	return horS.removeThisSchedule(h);
+	}
+	
+	
 	
 }

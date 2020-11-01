@@ -9,6 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,10 @@ public class EmployeeController {
 	@GetMapping("/empForSchedule")
 	public Employee getThis(@RequestParam String id){
 		return empRep.employeOfSchedule(id);
+	}
+	@GetMapping("/employeOnId/{id}")
+	public Optional<Employee> getEmpWithId(@PathVariable int id) {
+		return empRep.findById(id);
 	}
 	
 }

@@ -33,6 +33,10 @@ public class RaisonModif {
 	@Column(name="dateModif")
 	Date dateModif;
 	
+	@ManyToOne(cascade = {CascadeType.MERGE})
+	@JoinColumn(name = "idEmpModif")
+	private Employee employe;
+	
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "idHoraire",nullable = false)
 	private Horaire horaire;
@@ -67,6 +71,14 @@ public class RaisonModif {
 
 	public void setHoraire(Horaire horaire) {
 		this.horaire = horaire;
+	}
+
+	public Employee getEmploye() {
+		return employe;
+	}
+
+	public void setEmploye(Employee employe) {
+		this.employe = employe;
 	}
 	
 	
