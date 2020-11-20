@@ -17,7 +17,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name = "forum_")
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idForum")
+		property = "idForum",
+		resolver = EntityIdResolver.class)
 public class Forum {
 
 	@Id
@@ -38,7 +39,7 @@ public class Forum {
 
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idEmploye")
-    private Employee employee;
+    private Employee employeeFromForum;
 	
 	public int getIdForum() {
 		return idForum;
@@ -72,13 +73,15 @@ public class Forum {
 		this.datePublication = datePublication;
 	}
 
-	public Employee getEmployee() {
-		return employee;
+	public Employee getEmployeeFromForum() {
+		return employeeFromForum;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeFromForum(Employee employeeFromForum) {
+		this.employeeFromForum = employeeFromForum;
 	}
+
+	
 	
 	
 }

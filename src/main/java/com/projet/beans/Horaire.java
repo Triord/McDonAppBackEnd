@@ -27,7 +27,8 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Table(name = "horaire_")
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idHoraire")
+		property = "idHoraire",
+		resolver = EntityIdResolver.class)
 public class Horaire {
 	
 	@Id
@@ -56,12 +57,12 @@ public class Horaire {
 	@Column(name="statusHoraire")
 	Boolean statusHoraire;
 	
-	@OneToMany(mappedBy = "horaire",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "horaire",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
 	public Set<RaisonModif> rm;
 	
-	@ManyToOne(cascade = { CascadeType.MERGE})
+	@ManyToOne(cascade = { CascadeType.MERGE},fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEmploye" , nullable = false)
-	private Employee employee;
+	private Employee employeeFromHoraire;
 	
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "idUserCreate", nullable = false)
@@ -144,12 +145,13 @@ public class Horaire {
 		this.rm = rm;
 	}
 	
-	public Employee getEmployee() {
-		return employee;
+
+	public Employee getEmployeeFromHoraire() {
+		return employeeFromHoraire;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeFromHoraire(Employee employeeFromHoraire) {
+		this.employeeFromHoraire = employeeFromHoraire;
 	}
 
 	public Boolean getStatusHoraire() {

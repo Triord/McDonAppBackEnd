@@ -3,6 +3,7 @@ package com.projet.repositories;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,11 @@ import com.projet.beans.Conge;
 @Repository
 public interface CongeRepo extends CrudRepository<Conge, Integer> {
 
+	
 	@Query(value="select* from conge_ as c join horaire_ as h on c.idEmploye = :h.idEmploye where c.dateConge = :h.dateJour", nativeQuery = true)
 	public Conge findConge(@Param("h.idEmploye") int idEmp,@Param("h.dateJour") String dtHoraire);
+	
+	@Query(value="select* from conge_", nativeQuery = true)
+	public List <Conge> allConge();
 }
+

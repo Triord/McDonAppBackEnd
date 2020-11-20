@@ -40,7 +40,7 @@ public class HoraireImpl implements HoraireService{
 		return horaire;
 		}
 	public Horaire createScheduleDayperDay(Horaire h) throws Exception {		
-		Employee emp = h.getEmployee();
+		Employee emp = h.getEmployeeFromHoraire();
 		empRep.findById(emp.getIdEmploye());
 		int idEmp = emp.getIdEmploye();
 		Date dtHoraire = h.getDateJour();
@@ -80,7 +80,7 @@ public class HoraireImpl implements HoraireService{
 			int idForFind = h.getIdHoraire();
 			Optional<Employee> modifByUserLog =empRep.findById(id);
 			Horaire horInDb = horRep.findScheduleById(idForFind);
-			h.setEmployee(horInDb.getEmployee());
+			h.setEmployeeFromHoraire(horInDb.getEmployeeFromHoraire());
 			h.setCreateBy(horInDb.getCreateBy());
 			h.setModifBy(modifByUserLog.get());
 			return horRep.save(h);

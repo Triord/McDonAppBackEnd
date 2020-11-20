@@ -60,25 +60,25 @@ public class Employee {
 	    )
 	private Set<Role> role = new HashSet<>();
 	
-	@OneToOne(mappedBy = "employee", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "employeeFromForum", fetch = FetchType.LAZY)
     private Forum forum;
 	
-	@OneToMany(mappedBy = "employe", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeFromRM", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	public Set<RaisonModif> raisonModif;
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeeFromQuestion",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Question> question;
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeeFromDisp",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Disponibilite> dispo;
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeeFromReponse",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Reponse> reponse;
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeeFromConge",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Conge> conge;
 	
-	@OneToMany(mappedBy = "employee",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@OneToMany(mappedBy = "employeeFromHoraire",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	public Set<Horaire> horaire;
 	
 	@OneToMany(mappedBy = "employeView",fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
@@ -197,7 +197,7 @@ public class Employee {
 	public void setReponse(Set<Reponse> reponse) {
 		this.reponse = reponse;
 	}
-	@JsonIgnore
+	
 	public Set<Conge> getConge() {
 		return conge;
 	}

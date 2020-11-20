@@ -19,7 +19,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name = "role_")
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idRole")
+		property = "idRole",
+		resolver = EntityIdResolver.class)
 public class Role {
 	
 	@Id
@@ -31,7 +32,7 @@ public class Role {
 	String nomRole;
 	
 	@ManyToMany(mappedBy = "role",fetch = FetchType.LAZY)
-	private Set<Employee> employee = new HashSet<>();
+	private Set<Employee> employeeFromRole = new HashSet<>();
 	
 
 	public int getIdRole() {
@@ -50,13 +51,15 @@ public class Role {
 		this.nomRole = nomRole;
 	}
 
-	public Set<Employee> getEmployee() {
-		return employee;
+	public Set<Employee> getEmployeeFromRole() {
+		return employeeFromRole;
 	}
 
-	public void setEmployee(Set<Employee> employee) {
-		this.employee = employee;
+	public void setEmployeeFromRole(Set<Employee> employeeFromRole) {
+		this.employeeFromRole = employeeFromRole;
 	}
+
+	
 	
 	
 	

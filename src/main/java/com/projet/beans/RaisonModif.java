@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,9 +18,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "raisonModif_")
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idRM")
 public class RaisonModif {
 	
 	@Id
@@ -35,9 +33,9 @@ public class RaisonModif {
 	
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name = "idEmpModif")
-	private Employee employe;
+	private Employee employeFromRM;
 	
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = { CascadeType.MERGE },fetch = FetchType.EAGER)
 	@JoinColumn(name = "idHoraire",nullable = false)
 	private Horaire horaire;
 
@@ -73,13 +71,15 @@ public class RaisonModif {
 		this.horaire = horaire;
 	}
 
-	public Employee getEmploye() {
-		return employe;
+	public Employee getEmployeFromRM() {
+		return employeFromRM;
 	}
 
-	public void setEmploye(Employee employe) {
-		this.employe = employe;
+	public void setEmployeFromRM(Employee employeFromRM) {
+		this.employeFromRM = employeFromRM;
 	}
+
+	
 	
 	
 	

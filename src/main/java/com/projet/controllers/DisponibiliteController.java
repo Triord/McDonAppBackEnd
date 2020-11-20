@@ -77,10 +77,10 @@ public class DisponibiliteController {
 	@PutMapping("/disponibilite/{id}")
 	public Disponibilite upDisp(@RequestBody Disponibilite disp) {	
 		Optional<Disponibilite> dispo = dispRep.findById(disp.getIdDispo());
-		Employee emp = dispo.get().getEmployee();
+		Employee emp = dispo.get().getEmployeeFromDisp();
 		
-		System.out.println("l employee est "+dispo.get().getEmployee());
-		disp.setEmployee(emp);
+		System.out.println("l employee est "+dispo.get().getEmployeeFromDisp());
+		disp.setEmployeeFromDisp(emp);
 		
 		return dispRep.save(disp);
 	}
@@ -94,7 +94,7 @@ public class DisponibiliteController {
 		  int idUser = emp.get().getIdEmploye();
 		  Employee emp2 = new Employee();
 		  emp2.setIdEmploye(idUser);
-		  disp.setEmployee(emp2);
+		  disp.setEmployeeFromDisp(emp2);
 		} 
 		
 		return dispRep.save(disp);

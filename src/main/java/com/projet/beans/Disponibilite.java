@@ -20,7 +20,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name = "disponibilite_")
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idDispo")
+		property = "idDispo",
+		resolver = EntityIdResolver.class)
 public class Disponibilite implements Comparable<Disponibilite> {
 	
 	@Id
@@ -72,7 +73,7 @@ public class Disponibilite implements Comparable<Disponibilite> {
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "idEmploye")
-	private Employee employee;
+	private Employee employeeFromDisp;
 	
 	
 	public int getIdDispo() {
@@ -83,21 +84,20 @@ public class Disponibilite implements Comparable<Disponibilite> {
 		this.idDispo = idDispo;
 	}
 
-	
-	public Employee getEmployee() {
-		
-		return employee;
+
+	public Employee getEmployeeFromDisp() {
+		return employeeFromDisp;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployeeFromDisp(Employee employeeFromDisp) {
+		this.employeeFromDisp = employeeFromDisp;
 	}
 
 	@Override
 	public int compareTo(Disponibilite o) {
 		// TODO Auto-generated method stub
 		
-		return this.getEmployee().getNom().compareTo(o.getEmployee().getNom());
+		return this.getEmployeeFromDisp().getNom().compareTo(o.getEmployeeFromDisp().getNom());
 		
 	}
 

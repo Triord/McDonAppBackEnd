@@ -44,7 +44,7 @@ public class DisponibiliteImpl implements DisponibiliteService {
 		d.setSamedi2(d.getSamedi2());
 		d.setDimanche(d.getDimanche());
 		d.setDimanche2(d.getDimanche2());
-		d.setEmployee(d.getEmployee());
+		d.setEmployeeFromDisp(d.getEmployeeFromDisp());
 		dispRep.save(d);
 		return d;
 	}
