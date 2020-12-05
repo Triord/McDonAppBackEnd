@@ -27,8 +27,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Table(name = "horaire_")
 @JsonIdentityInfo(
 		generator = ObjectIdGenerators.PropertyGenerator.class,
-		property = "idHoraire",
-		resolver = EntityIdResolver.class)
+		property = "idHoraire")
 public class Horaire {
 	
 	@Id
@@ -60,7 +59,7 @@ public class Horaire {
 	@OneToMany(mappedBy = "horaire",fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
 	public Set<RaisonModif> rm;
 	
-	@ManyToOne(cascade = { CascadeType.MERGE},fetch = FetchType.EAGER)
+	@ManyToOne(cascade = { CascadeType.MERGE})
 	@JoinColumn(name = "idEmploye" , nullable = false)
 	private Employee employeeFromHoraire;
 	

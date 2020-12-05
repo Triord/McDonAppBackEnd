@@ -1,5 +1,7 @@
 package com.projet.beans;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -33,7 +35,7 @@ public class Forum {
 	String contenu;
 	
 	@Column(name="datePublication")
-	String datePublication;
+	Date datePublication;
 	
 	
 
@@ -65,11 +67,13 @@ public class Forum {
 		this.contenu = contenu;
 	}
 
-	public String getDatePublication() {
+	
+
+	public Date getDatePublication() {
 		return datePublication;
 	}
 
-	public void setDatePublication(String datePublication) {
+	public void setDatePublication(Date datePublication) {
 		this.datePublication = datePublication;
 	}
 

@@ -37,6 +37,9 @@ public class Employee {
 	@Column(name="prenom")
 	String prenom;
 	
+	@Column(name="numeroTelephone")
+	String numTel;
+	
 	@Column(name="email")
 	String email;
 	
@@ -251,6 +254,14 @@ public class Employee {
 
 	public void setWhoViewedMana(Set<ViewEmploye> whoViewedMana) {
 		this.whoViewedMana = whoViewedMana;
+	}
+
+	public String getNumTel() {
+		return numTel;
+	}
+
+	public void setNumTel(String numTel) {
+		this.numTel = numTel;
 	}
 	
 	

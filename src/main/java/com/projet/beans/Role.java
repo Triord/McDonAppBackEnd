@@ -40,7 +40,7 @@ public class Role {
 	}
 
 	public void setIdRole(int idRole) {
-		this.idRole = idRole;
+		this.idRole = 1;
 	}
 
 	public String getNomRole() {

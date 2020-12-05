@@ -44,5 +44,10 @@ public class CongeController {
 		return congeS.unacceptConge(con);
 	}
 	
+	@PostMapping("/demandeDeConge")
+	public Conge demandeDeConge(@RequestBody Conge con) {
+		return congeS.demandeDeConge(con);
+	}
+	
 	
 }

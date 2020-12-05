@@ -29,7 +29,7 @@ public class RaisonModifImpl {
 		Employee emp = new Employee();
 		emp = empRep.findById(idEmpModif).get();
 		Date date = new Date();
-		//System.out.println(emp.getNom()+" "+emp.getPrenom());
+		System.out.println("ceci est un test");
 		rm.setEmployeFromRM(emp);
 		rm.setDateModif(date);
 		return rmRep.save(rm);
