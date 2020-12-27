@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.projet.repositories.EmployeeRepo;
 import com.projet.beans.Employee;
+import com.projet.beans.Role;
 import com.projet.jwt.JwtUserDetails;
 
 @Service
@@ -21,7 +22,10 @@ public class EmployeeImpl implements EmployeeService {
 		return emp;
 		}
 	public Employee addEmp(Employee emp) {
+		Role role = new Role();
+		role.setIdRole(4);
 		emp.setStatut(true);
+		emp.getRole().add(role);
 		return empR.save(emp);
 	
 	}
