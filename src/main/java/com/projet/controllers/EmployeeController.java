@@ -41,6 +41,7 @@ public class EmployeeController {
 	}
 	@PostMapping("/register")
 	public Employee register(@RequestBody Employee emp) {
+		
 		return empImp.addEmp(emp);
 		
 	}
